@@ -2,9 +2,9 @@ import React from 'react';
 import pokedexLogo from '../imgs/pokedex-logo.png';
 import '../styles/Header.css';
 
-const Header = () => {
+const Header = ({ className }) => {
   return (
-    <header>
+    <header className={className}>
       <img src={pokedexLogo} alt='Logo de la pagina' />
       <div className='search-box'>
         <button className='btn-search'>

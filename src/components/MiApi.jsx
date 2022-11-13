@@ -2,8 +2,10 @@ import React, { useState, useEffect } from 'react';
 import PokemonList from './PokemonList';
 import Pagination2 from './Pagination';
 
-const MiApi = ({ pokemon, setPokemon }) => {
-  const [currentURL, setCurrentURL] = useState('https://pokeapi.co/api/v2/pokemon/');
+const MiApi = ({ className, pokemon, setPokemon }) => {
+  const [currentURL, setCurrentURL] = useState(
+    'https://pokeapi.co/api/v2/pokemon/'
+  );
   const [nextPageURL, setNextPageURL] = useState('');
   const [prevPageURL, setPrevPageURL] = useState('');
   const [loading, setLoading] = useState(true);
@@ -67,13 +69,13 @@ const MiApi = ({ pokemon, setPokemon }) => {
   };
 
   return (
-    <>
+    <section className={className}>
       {!loading && <PokemonList pokemon={pokemon} />}
       <Pagination2
         gotoNextPage={nextPageURL ? gotoNextPage : null}
         gotoPrevPage={prevPageURL ? gotoPrevPage : null}
       />
-    </>
+    </section>
   );
 };
 
