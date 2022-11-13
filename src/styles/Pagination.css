@@ -1,0 +1,48 @@
+.pagination-container {
+  display: flex;
+}
+
+.button-next,
+.button-previous {
+  display: block;
+  width: 200px;
+  height: 40px;
+  line-height: 40px;
+  font-size: 18px;
+  font-family: sans-serif;
+  text-decoration: none;
+  color: #333;
+  border: 2px solid #333;
+  letter-spacing: 2px;
+  text-align: center;
+  position: relative;
+  transition: all 0.35s;
+}
+
+.button-next span,
+.button-previous span {
+  position: relative;
+  z-index: 2;
+}
+
+.button-next:after,
+.button-previous:after {
+  position: absolute;
+  content: '';
+  top: 0;
+  left: 0;
+  width: 0;
+  height: 100%;
+  background: #ff003b;
+  transition: top 0.35s;
+}
+
+.button-next:hover,
+.button-previous:hover {
+  color: #fff;
+}
+
+.button-next:hover:after,
+.button-previous:hover:after {
+  width: 100%;
+}

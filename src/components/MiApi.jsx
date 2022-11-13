@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import PokemonList from './PokemonList';
-import Pagination2 from './Pagination';
+import Pagination from './Pagination';
+import '../styles/MiApi.css'
 
 const MiApi = ({ className, pokemon, setPokemon }) => {
   const [currentURL, setCurrentURL] = useState(
@@ -11,13 +12,29 @@ const MiApi = ({ className, pokemon, setPokemon }) => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
+    //En caso de que se desmonte el componente mientras se hace el fetch
+    const controller = new AbortController();
+
     const initialFetch = async () => {
       setLoading(true);
-      const res = await fetch(currentURL);
-      const data = await res.json();
-      setNextPageURL(data.next);
-      setPrevPageURL(data.previous);
-      return data.results.map((poke) => poke.url);
+      try {
+        const res = await fetch(currentURL);
+
+        //Lanzar un error en caso de que no se haya podido conectar a la API
+        if (!res.ok) throw new Error(res.statusText);
+
+        const data = await res.json();
+        setNextPageURL(data.next);
+        setPrevPageURL(data.previous);
+        return data.results.map((poke) => poke.url);
+      } catch (err) {
+        if (err.name === 'AbortError') {
+          console.log('La llamada a la API ha sido abortada');
+        } else {
+          setLoading(false);
+          console.log(err.message);
+        }
+      }
     };
 
     const getAllCurrentPokemonData = async () => {
@@ -58,6 +75,10 @@ const MiApi = ({ className, pokemon, setPokemon }) => {
     getAllCurrentPokemonData();
 
     setTimeout(() => setLoading(false), 1000);
+
+    return () => {
+      controller.abort();
+    };
   }, [currentURL, setPokemon]);
 
   const gotoNextPage = () => {
@@ -70,11 +91,13 @@ const MiApi = ({ className, pokemon, setPokemon }) => {
 
   return (
     <section className={className}>
-      {!loading && <PokemonList pokemon={pokemon} />}
-      <Pagination2
-        gotoNextPage={nextPageURL ? gotoNextPage : null}
-        gotoPrevPage={prevPageURL ? gotoPrevPage : null}
-      />
+      <div className='content-container'>
+        {!loading && <PokemonList pokemon={pokemon} />}
+        <Pagination
+          gotoNextPage={nextPageURL ? gotoNextPage : null}
+          gotoPrevPage={prevPageURL ? gotoPrevPage : null}
+        />
+      </div>
     </section>
   );
 };

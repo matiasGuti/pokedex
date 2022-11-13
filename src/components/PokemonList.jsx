@@ -3,7 +3,7 @@ import React from 'react';
 const PokemonList = ({ pokemon }) => {
   return (
     <ul>
-      {pokemon.map((poke) => (
+      {pokemon && pokemon.map((poke) => (
         <li key={poke.id}>
           {poke.name}
         </li>

@@ -1,0 +1,33 @@
+main {
+  display: grid;
+  grid-template-areas: "header header"
+                       "sidebar main"
+                       "footer footer";
+  grid-template-columns: 1fr 90vw;         
+  grid-template-rows: 2fr 80vh 1fr;             
+}
+
+.header-container {
+  grid-area: header;
+}
+
+.sidebar-container {
+  grid-area: sidebar;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  flex-grow: 1;
+  align-items: center;
+  gap: 1rem;
+  background-color: #333C4D;
+}
+
+.pokemon-container {
+  grid-area: main;
+  display: flex;
+}
+
+footer {
+  grid-area: footer;
+  background-color: #29303D;
+}
