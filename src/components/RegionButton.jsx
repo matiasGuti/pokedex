@@ -4,7 +4,7 @@ import '../styles/RegionButton.css'
 const RegionButton = ({ region }) => {
   return (
     <>
-      <button class='custom-btn'>
+      <button className='custom-btn'>
         <span>{region}</span>
       </button>
     </>

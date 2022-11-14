@@ -16,7 +16,6 @@ function App() {
         pokemon={pokemon}
         setPokemon={setPokemon}
       />
-      <footer></footer>
     </main>
   );
 }

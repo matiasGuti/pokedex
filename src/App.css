@@ -1,10 +1,10 @@
 main {
   display: grid;
   grid-template-areas: "header header"
-                       "sidebar main"
-                       "footer footer";
-  grid-template-columns: 1fr 90vw;         
-  grid-template-rows: 2fr 80vh 1fr;             
+                       "sidebar sidebar"
+                       "main main";
+  grid-template-columns: 11rem 1fr;         
+  grid-template-rows: 10rem 2fr;             
 }
 
 .header-container {
@@ -14,20 +14,14 @@ main {
 .sidebar-container {
   grid-area: sidebar;
   display: flex;
-  flex-direction: column;
+  margin-bottom: 1rem;
   justify-content: center;
-  flex-grow: 1;
   align-items: center;
-  gap: 1rem;
+  flex-wrap: wrap;
   background-color: #333C4D;
 }
 
 .pokemon-container {
   grid-area: main;
-  display: flex;
-}
-
-footer {
-  grid-area: footer;
-  background-color: #29303D;
+  background-color: #DEE3EA;
 }

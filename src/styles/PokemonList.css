@@ -1,0 +1,66 @@
+.pokemon-box-container {
+  width: 100%;
+  height: 100%;
+  margin-bottom: 1rem;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr));
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.pokemon-box {
+  height: 85%;
+  box-shadow: inset 2px 2px 2px 0px rgba(255, 255, 255, 0.5),
+    7px 7px 20px 0px rgba(0, 0, 0, 0.1), 4px 4px 5px 0px rgba(0, 0, 0, 0.1);
+  padding: 0.5rem;
+  border: 1px solid rgba(0, 0,0,0.2);
+  background-color: white;
+  margin: 0.8rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.pokemon-box p {
+  font-size: 1.3rem;
+  font-family: Roboto, sans-serif;
+  font-weight: 500;
+}
+
+.pokemon-box-img {
+  width: 11rem;
+}
+
+.pokemon-box-button {
+  width: 90%;
+  appearance: none;
+  background-color: #FFFFFF;
+  border-radius: 5px;
+  border-style: none;
+  box-shadow: #B32039 0 0px 6px inset;
+  box-sizing: border-box;
+  color: #000000;
+  cursor: pointer;
+  display: inline-block;
+  font-family: Roboto,sans-serif;
+  font-size: 1rem;
+  font-weight: 400;
+  outline: none;
+  padding: 0.5rem 1rem;
+  text-align: center;
+  text-decoration: none;
+  transition: all .15s;
+}
+
+.pokemon-box-button:hover {
+  background-color: #B32039 ;
+  box-shadow: #ffc2298f 0 -6px 8px inset;
+  transform: scale(1.09);
+  color: white;
+}
+
+.pokemon-box-button:active {
+  transform: scale(1.025);
+}

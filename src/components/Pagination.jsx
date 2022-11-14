@@ -16,17 +16,17 @@ const Pagination2 = ({ gotoNextPage, gotoPrevPage }) => {
       )} */}
 
     {gotoPrevPage && (
-        <div class='wrapper'>
-          <a onClick={gotoNextPage} className='button-previous'>
-            <span>Previous</span>
+        <div className='wrapper'>
+          <a onClick={gotoPrevPage} className='button-previous'>
+            <span>Anterior</span>
           </a>
         </div>
       )}
 
       {gotoNextPage && (
-        <div class='wrapper'>
+        <div className='wrapper'>
           <a onClick={gotoNextPage} className='button-next'>
-            <span>Next</span>
+            <span>Siguiente</span>
           </a>
         </div>
       )}

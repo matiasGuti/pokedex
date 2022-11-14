@@ -5,6 +5,8 @@
 
 html,
 body {
+  background-color: #DEE3EA;
+  height: 100vh;
   font-size: 16px;
   font-family: Lato, Roboto, sans-serif;
 }

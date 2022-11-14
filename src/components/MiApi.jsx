@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import PokemonList from './PokemonList';
 import Pagination from './Pagination';
-import '../styles/MiApi.css'
+import '../styles/MiApi.css';
 
 const MiApi = ({ className, pokemon, setPokemon }) => {
   const [currentURL, setCurrentURL] = useState(
@@ -74,7 +74,7 @@ const MiApi = ({ className, pokemon, setPokemon }) => {
 
     getAllCurrentPokemonData();
 
-    setTimeout(() => setLoading(false), 1000);
+    setTimeout(() => setLoading(false), 1300);
 
     return () => {
       controller.abort();
@@ -92,11 +92,15 @@ const MiApi = ({ className, pokemon, setPokemon }) => {
   return (
     <section className={className}>
       <div className='content-container'>
-        {!loading && <PokemonList pokemon={pokemon} />}
-        <Pagination
-          gotoNextPage={nextPageURL ? gotoNextPage : null}
-          gotoPrevPage={prevPageURL ? gotoPrevPage : null}
-        />
+        <div className='pagination-container'>
+          <Pagination
+            gotoNextPage={nextPageURL ? gotoNextPage : null}
+            gotoPrevPage={prevPageURL ? gotoPrevPage : null}
+          />
+        </div>
+        <div className='pokemon-list-container'>
+          {!loading && <PokemonList pokemon={pokemon} />}
+        </div>
       </div>
     </section>
   );
