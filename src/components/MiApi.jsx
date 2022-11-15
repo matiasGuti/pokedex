@@ -49,17 +49,17 @@ const MiApi = ({ className, pokemon, setPokemon }) => {
         const currentPokemon = {
           id: fullData.id,
           name: fullData.name,
-          Type1: fullData.types[0].type.name,
-          Type2:
+          type1: fullData.types[0].type.name,
+          type2:
             fullData.types.length === 2 ? fullData.types[1].type.name : null,
-          Height: fullData.height,
-          Weight: fullData.weight,
-          Abilitiy1: fullData.abilities[0].ability.name,
-          Abilitiy2:
+          height: fullData.height,
+          weight: fullData.weight,
+          ability1: fullData.abilities[0].ability.name,
+          ability2:
             fullData.abilities.length >= 2
               ? fullData.abilities[1].ability.name
               : null,
-          Abilitiy3:
+          ability3:
             fullData.abilities.length === 3
               ? fullData.abilities[2].ability.name
               : null,
@@ -74,7 +74,7 @@ const MiApi = ({ className, pokemon, setPokemon }) => {
 
     getAllCurrentPokemonData();
 
-    setTimeout(() => setLoading(false), 1300);
+    setTimeout(() => setLoading(false), 2000);
 
     return () => {
       controller.abort();
@@ -94,6 +94,7 @@ const MiApi = ({ className, pokemon, setPokemon }) => {
       <div className='content-container'>
         <div className='pokemon-list-container'>
           {!loading && <PokemonList pokemon={pokemon} />}
+          {loading && <p className='cargando'>Cargando datos...</p>}
         </div>
         <div className='pagination-container'>
           <Pagination
