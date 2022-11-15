@@ -92,14 +92,14 @@ const MiApi = ({ className, pokemon, setPokemon }) => {
   return (
     <section className={className}>
       <div className='content-container'>
+        <div className='pokemon-list-container'>
+          {!loading && <PokemonList pokemon={pokemon} />}
+        </div>
         <div className='pagination-container'>
           <Pagination
             gotoNextPage={nextPageURL ? gotoNextPage : null}
             gotoPrevPage={prevPageURL ? gotoPrevPage : null}
           />
-        </div>
-        <div className='pokemon-list-container'>
-          {!loading && <PokemonList pokemon={pokemon} />}
         </div>
       </div>
     </section>

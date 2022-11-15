@@ -4,20 +4,9 @@ import '../styles/Pagination.css'
 const Pagination2 = ({ gotoNextPage, gotoPrevPage }) => {
   return (
     <div className='pagination-container'>
-      {/* {gotoPrevPage && (
-        <button onClick={gotoPrevPage} className='button-previous'>
-          Previous
-        </button>
-      )}
-      {gotoNextPage && (
-        <button onClick={gotoNextPage} className='button-next'>
-          Next
-        </button>
-      )} */}
-
     {gotoPrevPage && (
         <div className='wrapper'>
-          <a onClick={gotoPrevPage} className='button-previous'>
+          <a onClick={gotoPrevPage} className='button-previous' href='!#'>
             <span>Anterior</span>
           </a>
         </div>
@@ -25,7 +14,7 @@ const Pagination2 = ({ gotoNextPage, gotoPrevPage }) => {
 
       {gotoNextPage && (
         <div className='wrapper'>
-          <a onClick={gotoNextPage} className='button-next'>
+          <a onClick={gotoNextPage} className='button-next' href='!#'>
             <span>Siguiente</span>
           </a>
         </div>
