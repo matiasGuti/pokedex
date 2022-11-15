@@ -9,6 +9,8 @@ function App() {
   const [search, setSearch] = useState('');
   const [searchURL, setSearchURL] = useState('');
 
+  //Cuando el usuario escriba algo en la searchbar se va a actualizar el state search que va a activar el siguiente useEffect que actualizara 
+  //una URL para hacer fetch
   useEffect(() => {
     setSearchURL(`https://pokeapi.co/api/v2/pokemon/${search.toLowerCase()}`)
   }, [search, searchURL])

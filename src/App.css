@@ -13,6 +13,7 @@ main {
 
 .sidebar-container {
   grid-area: sidebar;
+  padding: 2rem 0;
   display: flex;
   margin-bottom: 1rem;
   justify-content: center;
