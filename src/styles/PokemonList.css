@@ -64,3 +64,20 @@
 .pokemon-box-button:active {
   transform: scale(1.025);
 }
+
+.pokemon-box-container.only-pokemon {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;  
+  margin: 3rem 3rem;
+}
+
+.pokemon-box.only-pokemon {
+  width: 25rem;
+}
+
+.pokemon-box.only-pokemon img {
+  width: 15rem;
+}

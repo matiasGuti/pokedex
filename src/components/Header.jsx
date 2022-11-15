@@ -1,8 +1,17 @@
-import React from 'react';
+import React, { useState } from 'react';
 import pokedexLogo from '../imgs/pokedex-logo.png';
 import '../styles/Header.css';
 
-const Header = ({ className }) => {
+const Header = ({ className, setSearch }) => {
+  const [input, setInput] = useState('')
+
+  const handlePress = (ev) => {
+    if(ev.key === 'Enter') {
+      setSearch(input)
+      setInput('')
+    } 
+  };
+
   return (
     <header className={className}>
       <img src={pokedexLogo} alt='Logo de la pagina' />
@@ -14,6 +23,9 @@ const Header = ({ className }) => {
           type='text'
           className='input-search'
           placeholder='   Buscar un pokemon...'
+          onChange={(ev) => setInput(ev.target.value)}
+          onKeyPress={handlePress}
+          value={input}
         />
       </div>
     </header>

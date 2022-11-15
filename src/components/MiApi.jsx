@@ -3,14 +3,68 @@ import PokemonList from './PokemonList';
 import Pagination from './Pagination';
 import '../styles/MiApi.css';
 
-const MiApi = ({ className, pokemon, setPokemon }) => {
+const MiApi = ({ className, pokemon, setPokemon, searchPokemon }) => {
   const [currentURL, setCurrentURL] = useState(
     'https://pokeapi.co/api/v2/pokemon/'
   );
   const [nextPageURL, setNextPageURL] = useState('');
   const [prevPageURL, setPrevPageURL] = useState('');
   const [loading, setLoading] = useState(true);
+  const [onlyPokemon, setOnlyPokemon] = useState(null);
 
+  //Fetch que se dispara cuando el usuario busca un pokemon en especifico por el buscador
+  useEffect(() => {
+    const controller = new AbortController();
+
+    const getSearchPokemon = async () => {
+      try {
+        setLoading(true);
+        const res = await fetch(searchPokemon);
+
+        if (!res.ok) throw new Error(res.statusText);
+
+        const data = await res.json();
+
+        const currentPokemon = [
+          {
+            id: data.id,
+            name: data.name,
+            type1: data.types[0].type.name,
+            type2: data.types.length === 2 ? data.types[1].type.name : null,
+            height: data.height,
+            weight: data.weight,
+            ability1: data.abilities[0].ability.name,
+            ability2:
+              data.abilities.length >= 2
+                ? data.abilities[1].ability.name
+                : null,
+            ability3:
+              data.abilities.length === 3
+                ? data.abilities[2].ability.name
+                : null,
+            front_sprite: data.sprites.front_default,
+          },
+        ];
+
+        setPokemon(currentPokemon);
+        setOnlyPokemon('only-pokemon');
+        setTimeout(() => setLoading(false), 1000);
+      } catch (err) {
+        if (err.name === 'Error') {
+          alert('Pokemon no encontrado, porfavor ingrese otro nombre');
+          setLoading(false);
+        }
+      }
+    };
+
+    getSearchPokemon();
+
+    return () => {
+      controller.abort();
+    };
+  }, [searchPokemon, setPokemon, onlyPokemon]);
+
+  //Fetch inicial que trae todo los pokemones
   useEffect(() => {
     //En caso de que se desmonte el componente mientras se hace el fetch
     const controller = new AbortController();
@@ -93,14 +147,18 @@ const MiApi = ({ className, pokemon, setPokemon }) => {
     <section className={className}>
       <div className='content-container'>
         <div className='pokemon-list-container'>
-          {!loading && <PokemonList pokemon={pokemon} />}
+          {!loading && (
+            <PokemonList pokemon={pokemon} onlyPokemonClass={onlyPokemon} />
+          )}
           {loading && <p className='cargando'>Cargando datos...</p>}
         </div>
         <div className='pagination-container'>
-          <Pagination
-            gotoNextPage={nextPageURL ? gotoNextPage : null}
-            gotoPrevPage={prevPageURL ? gotoPrevPage : null}
-          />
+          {!onlyPokemon && (
+            <Pagination
+              gotoNextPage={nextPageURL ? gotoNextPage : null}
+              gotoPrevPage={prevPageURL ? gotoPrevPage : null}
+            />
+          )}
         </div>
       </div>
     </section>

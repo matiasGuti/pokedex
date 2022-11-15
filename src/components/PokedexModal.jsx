@@ -3,8 +3,6 @@ import '../styles/PokedexModal.css';
 import { RiCloseLine } from 'react-icons/ri';
 
 const PokedexModal = ({ show, setShowModal, currentPokemon }) => {
-  console.log(currentPokemon);
-
   return (
     <>
       {show && (

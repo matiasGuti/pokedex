@@ -2,17 +2,15 @@ import React, { useState } from 'react';
 import '../styles/PokemonList.css';
 import PokedexModal from './PokedexModal';
 
-const PokemonList = ({ pokemon }) => {
+const PokemonList = ({ pokemon, onlyPokemonClass }) => {
   const [currentPokemon, setCurrentPokemon] = useState(null);
   const [showModal, setShowModal] = useState(false);
 
-  console.log(pokemon);
-
   return (
-    <div className='pokemon-box-container'>
+    <div className={(onlyPokemonClass) ? `pokemon-box-container ${onlyPokemonClass}` : 'pokemon-box-container'}>
       {pokemon &&
         pokemon.map((poke) => (
-          <div key={poke.id} className='pokemon-box'>
+          <div key={poke.id} className={(onlyPokemonClass) ? `pokemon-box ${onlyPokemonClass}` : 'pokemon-box'}>
             <p>
               #{poke.id}:{' '}
               {poke.name.charAt(0).toUpperCase() + poke.name.slice(1)}
