@@ -4,9 +4,7 @@ import Pagination from './Pagination';
 import '../styles/MiApi.css';
 
 const MiApi = ({ className, pokemon, setPokemon, searchPokemon }) => {
-  const [currentURL, setCurrentURL] = useState(
-    'https://pokeapi.co/api/v2/pokemon/'
-  );
+  const [currentURL, setCurrentURL] = useState('https://pokeapi.co/api/v2/pokemon/');
   const [nextPageURL, setNextPageURL] = useState('');
   const [prevPageURL, setPrevPageURL] = useState('');
   const [loading, setLoading] = useState(true);
